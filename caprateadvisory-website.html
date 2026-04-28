@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cap Rate Advisory — Commercial Real Estate Financial Consulting</title>
+  <meta name="description" content="Flat-fee financial analysis and deal structuring advisory for commercial real estate investors, syndicators, and developers. Objective underwriting. No commissions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ──────────────────────────────────────────────
+       DESIGN TOKENS
+    ────────────────────────────────────────────── */
+    :root {
+      --navy:       #0E1F38;
+      --navy-light: #1C2F4D;
+      --gold:       #B8952E;
+      --gold-light: #D4AF52;
+      --gold-pale:  #F5EDD8;
+      --white:      #FFFFFF;
+      --off-white:  #F8F7F4;
+      --gray-100:   #F1F0ED;
+      --gray-300:   #D1CFC8;
+      --gray-500:   #8A8880;
+      --gray-700:   #4A4845;
+      --text:       #1A1917;
+      --text-muted: #6B6965;
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+
+      --max-w: 1100px;
+      --section-pad: 96px 24px;
+      --radius: 4px;
+      --radius-lg: 8px;
+    }
+
+    /* ──────────────────────────────────────────────
+       RESET & BASE
+    ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ──────────────────────────────────────────────
+       UTILITIES
+    ────────────────────────────────────────────── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 20px 0;
+    }
+
+    .divider--center { margin: 20px auto; }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn--primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .btn--primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.4);
+    }
+    .btn--outline:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
+
+    .btn--dark {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .btn--dark:hover { background: var(--navy-light); }
+
+    /* ──────────────────────────────────────────────
+       NAVIGATION
+    ────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(14, 31, 56, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo svg { flex-shrink: 0; }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-logo-name {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      color: var(--white);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-logo-sub {
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy) !important;
+      background: var(--gold);
+      padding: 9px 22px;
+      border-radius: var(--radius);
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      margin: 5px 0;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    /* ──────────────────────────────────────────────
+       HERO
+    ────────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      padding: 148px 24px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 100% 0%, rgba(184,149,46,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 0% 100%, rgba(184,149,46,0.05) 0%, transparent 60%);
+    }
+
+    /* Subtle grid texture */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black, transparent);
+    }
+
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .hero-eyebrow-line {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-eyebrow-text {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.12;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 72px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 48px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      max-width: 580px;
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ──────────────────────────────────────────────
+       TRUST BAR
+    ────────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--gold-pale);
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    .trust-bar-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 48px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    .trust-item svg { flex-shrink: 0; }
+
+    /* ──────────────────────────────────────────────
+       SECTION: VALUE PROP
+    ────────────────────────────────────────────── */
+    .section-valueprop {
+      padding: var(--section-pad);
+      background: var(--white);
+    }
+
+    .valueprop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .valueprop-left h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .valueprop-left p {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .valueprop-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .comparison-card {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-300);
+    }
+
+    .comparison-card--them {
+      background: var(--gray-100);
+    }
+
+    .comparison-card--us {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .comparison-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .comparison-card--them .comparison-label { color: var(--gray-500); }
+    .comparison-card--us .comparison-label { color: var(--gold); }
+
+    .comparison-card ul { display: flex; flex-direction: column; gap: 8px; }
+
+    .comparison-card li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13.5px;
+      line-height: 1.4;
+    }
+
+    .comparison-card--them li { color: var(--gray-700); }
+    .comparison-card--us li { color: rgba(255,255,255,0.85); }
+
+    .comparison-card--them li::before {
+      content: '✕';
+      flex-shrink: 0;
+      color: #C0392B;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .comparison-card--us li::before {
+      content: '✓';
+      flex-shrink: 0;
+      color: var(--gold);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .valueprop-right { padding-top: 8px; }
+
+    .proof-block {
+      background: var(--off-white);
+      border-left: 3px solid var(--gold);
+      padding: 28px 28px 28px 28px;
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      margin-bottom: 24px;
+    }
+
+    .proof-block p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .proof-block strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 28px;
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    /* ──────────────────────────────────────────────
+       SECTION: SERVICES
+    ────────────────────────────────────────────── */
+    .section-services {
+      background: var(--off-white);
+      padding: var(--section-pad);
+    }
+
+    .section-header { text-align: center; margin-bottom: 56px; }
+
+    .section-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .services-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: calc(66.666% + 10px);
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(14,31,56,0.1);
+    }
+
+    .service-card--featured {
+      border-color: var(--gold);
+      background: var(--navy);
+    }
+
+    .service-card--featured::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      top: 0; right: 0;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      padding: 5px 14px;
+      border-radius: 0 var(--radius-lg) 0 var(--radius-lg);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--gold-pale);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .service-card--featured .service-icon {
+      background: rgba(184,149,46,0.2);
+    }
+
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .service-card--featured h3 { color: var(--white); }
+
+    .service-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .service-timeline {
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+    }
+
+    .service-card--featured .service-timeline { color: rgba(255,255,255,0.5); }
+
+    .service-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .service-card--featured .service-desc { color: rgba(255,255,255,0.65); }
+
+    .service-includes {
+      border-top: 1px solid var(--gray-300);
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .service-card--featured .service-includes { border-color: rgba(255,255,255,0.1); }
+
+    .service-includes li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .service-card--featured .service-includes li { color: rgba(255,255,255,0.7); }
+
+    .service-includes li::before {
+      content: '—';
+      flex-shrink: 0;
+      color: var(--gold);
+      font-size: 12px;
+      margin-top: 1px;
+    }
+
+    /* Retainer card */
+    .retainer-card {
+      margin-top: 20px;
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .retainer-left h3 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .retainer-left p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .retainer-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .retainer-tier {
+      padding: 20px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+    }
+
+    .retainer-tier h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .retainer-tier .price {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .retainer-tier ul { display: flex; flex-direction: column; gap: 5px; }
+
+    .retainer-tier li {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      line-height: 1.4;
+    }
+
+    .retainer-tier li::before {
+      content: '·';
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ──────────────────────────────────────────────
+       SECTION: PROCESS
+    ────────────────────────────────────────────── */
+    .section-process {
+      padding: var(--section-pad);
+      background: var(--white);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 56px;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 16px);
+      right: calc(12.5% + 16px);
+      height: 1px;
+      background: var(--gray-300);
+    }
+
+    .process-step { text-align: center; position: relative; }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-step h4 {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .process-step p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ──────────────────────────────────────────────
+       SECTION: ABOUT
+    ────────────────────────────────────────────── */
+    .section-about {
+      background: var(--navy);
+      padding: var(--section-pad);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-left .label { color: var(--gold); }
+
+    .about-left h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .about-left p {
+      color: rgba(255,255,255,0.65);
+      font-size: 16px;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .cred-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .cred-badge {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      letter-spacing: 0.04em;
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .expertise-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid var(--gold);
+      padding: 24px;
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    }
+
+    .expertise-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .expertise-item p {
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0;
+      line-height: 1.55;
+    }
+
+    /* ──────────────────────────────────────────────
+       SECTION: FOR WHOM
+    ────────────────────────────────────────────── */
+    .section-whom {
+      padding: var(--section-pad);
+      background: var(--off-white);
+    }
+
+    .whom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .whom-card {
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+
+    .whom-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .whom-card h3 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .whom-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .whom-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .whom-tag {
+      font-size: 11.5px;
+      font-weight: 500;
+      background: var(--gold-pale);
+      color: var(--navy);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ──────────────────────────────────────────────
+       SECTION: FAQ
+    ────────────────────────────────────────────── */
+    .section-faq {
+      padding: var(--section-pad);
+      background: var(--white);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .faq-item {
+      padding: 28px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-lg);
+      background: var(--off-white);
+    }
+
+    .faq-item h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .faq-item p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ──────────────────────────────────────────────
+       SECTION: CTA
+    ────────────────────────────────────────────── */
+    .section-cta {
+      background: var(--navy);
+      padding: 80px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(184,149,46,0.07) 0%, transparent 70%);
+    }
+
+    .section-cta h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .section-cta p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
+      margin: 0 auto 36px;
+      position: relative;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .cta-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 20px;
+      position: relative;
+    }
+
+    /* ──────────────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────────────── */
+    footer {
+      background: #07121F;
+      padding: 48px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {}
+
+    .footer-logo-name {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .footer-logo-sub {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      max-width: 260px;
+      line-height: 1.6;
+    }
+
+    .footer-links h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 16px;
+    }
+
+    .footer-links ul { display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-links li a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.15s;
+    }
+    .footer-links li a:hover { color: var(--white); }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      line-height: 1.5;
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* ──────────────────────────────────────────────
+       CONTACT / MODAL
+    ────────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7,18,31,0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      padding: 40px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--gray-500);
+      padding: 4px 8px;
+    }
+
+    .modal h3 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .modal p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--gray-300);
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--navy);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--navy-light); }
+
+    .form-note {
+      font-size: 11.5px;
+      color: var(--gray-500);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ──────────────────────────────────────────────
+       RESPONSIVE
+    ────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--navy);
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+      }
+      .nav-toggle { display: block; }
+
+      .hero { padding: 120px 24px 72px; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+      .valueprop-grid { grid-template-columns: 1fr; gap: 48px; }
+      .valueprop-comparison { grid-template-columns: 1fr; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .services-row-2 { grid-template-columns: 1fr; max-width: 100%; }
+
+      .retainer-card { grid-template-columns: 1fr; gap: 32px; }
+      .retainer-tiers { grid-template-columns: 1fr; }
+
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .process-steps::before { display: none; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .whom-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @media (max-width: 600px) {
+      :root { --section-pad: 64px 20px; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .hero-stat-num { font-size: 26px; }
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ─── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Cap Rate Advisory home">
+        <!-- Inline SVG logo mark -->
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="5" width="20" height="20" rx="1" transform="rotate(45 18 18)" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+          <rect x="8" y="8" width="14" height="14" rx="1" transform="rotate(45 18 18)" fill="#B8952E" opacity="0.9"/>
+          <circle cx="18" cy="18" r="3.5" fill="#0E1F38"/>
+          <circle cx="18" cy="18" r="1.2" fill="#B8952E"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Cap Rate Advisory</span>
+          <span class="nav-logo-sub">Commercial RE Financial Consulting</span>
+        </div>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="nav-cta" onclick="openModal()">Get Started</a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-eyebrow-text">Commercial Real Estate Financial Advisory</span>
+      </div>
+
+      <h1>Institutional-quality underwriting.<br><em>No commissions. No conflicts.</em></h1>
+
+      <p class="hero-sub">
+        Flat-fee financial analysis and deal structuring advisory for commercial real estate investors, syndicators, and developers doing $2M–$50M transactions.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#services" class="btn btn--primary">View Services &amp; Pricing</a>
+        <a href="mailto:matt@caprateadvisory.com" class="btn btn--outline">Email Matt Directly</a>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">$2M–$50M</div>
+          <div class="hero-stat-label">Deal size focus</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">5–7</div>
+          <div class="hero-stat-label">Day turnaround</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">$0</div>
+          <div class="hero-stat-label">Commission earned, ever</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST BAR ─── -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 12L3.5 15L5 9.5L1 6H6L8 1Z" fill="#B8952E"/></svg>
+        Matt Calnan, CPA, CMA
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="#B8952E" stroke-width="1.5"/><path d="M5 4V3C5 2.45 5.45 2 6 2H10C10.55 2 11 2.45 11 3V4" stroke="#B8952E" stroke-width="1.5"/></svg>
+        Flat fees · 100% upfront · No surprises
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#B8952E" stroke-width="1.5"/><path d="M5.5 8L7 9.5L10.5 6" stroke="#B8952E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        No mortgage brokerage · No commission conflicts
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12L6 4L9 9L11 6L14 12H2Z" stroke="#B8952E" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        NOI · DSCR · IRR · Cap Rate · Waterfall
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── VALUE PROP ─── -->
+  <section class="section-valueprop" id="valueprop">
+    <div class="container">
+      <div class="valueprop-grid">
+        <div class="valueprop-left">
+          <span class="label">The Problem</span>
+          <div class="divider"></div>
+          <h2>Your broker's "free" underwriting is costing you more than you think.</h2>
+          <p>When a commercial mortgage broker underwrites your deal, they earn 1–2 points at closing. On a $5M loan, that's $50,000–$100,000. Their analysis is designed to get the deal done — not necessarily to give you an accurate picture.</p>
+          <p>You need financial analysis from someone who gets paid regardless of whether you close. That's what flat-fee consulting is.</p>
+
+          <div class="valueprop-comparison">
+            <div class="comparison-card comparison-card--them">
+              <div class="comparison-label">Broker Underwriting</div>
+              <ul>
+                <li>Contingent compensation (1–2 points)</li>
+                <li>Incentivized to close the deal</li>
+                <li>Optimistic assumptions baked in</li>
+                <li>No independent review</li>
+              </ul>
+            </div>
+            <div class="comparison-card comparison-card--us">
+              <div class="comparison-label">Cap Rate Advisory</div>
+              <ul>
+                <li>Flat fee — paid before work begins</li>
+                <li>No stake in whether deal closes</li>
+                <li>Conservative, defensible assumptions</li>
+                <li>Built to help you decide, not to push</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="valueprop-right">
+          <div class="proof-block">
+            <strong>On a $5M loan:</strong>
+            <p>A commercial mortgage broker earns $50,000–$100,000 at closing. Cap Rate Advisory charges $3,000–$7,500 for the same financial analysis — delivered faster, with no conflict of interest.</p>
+          </div>
+          <div class="proof-block">
+            <strong>On a $15M loan:</strong>
+            <p>Broker points at 1%: $150,000. Full underwriting analysis, financing strategy report, and deal structuring from Cap Rate Advisory: $10,000–$20,000. The difference goes to your equity.</p>
+          </div>
+          <div class="proof-block">
+            <strong>What you actually get:</strong>
+            <p>A complete underwriting model — NOI build-up, DSCR analysis, IRR and equity multiple, sensitivity tables, exit analysis, and a written report — delivered in 5–7 business days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section class="section-services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Services &amp; Pricing</span>
+        <div class="divider divider--center"></div>
+        <h2>Flat-fee engagements.<br>No surprises. No commissions.</h2>
+        <p>Every engagement is clearly scoped, priced upfront, and delivered within the agreed timeline.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Card 1: Deal Screening -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="9" cy="9" r="6" stroke="#B8952E" stroke-width="1.8"/><path d="M14 14L19 19" stroke="#B8952E" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Deal Screening &amp; Feasibility</h3>
+          <div class="service-price">$1,000–$2,500</div>
+          <div class="service-timeline">Delivered in 2–3 business days</div>
+          <p class="service-desc">Quick go/no-go financial read before you invest time in full diligence. Know if a deal pencils before you make an offer.</p>
+          <ul class="service-includes">
+            <li>NOI validation &amp; cap rate check</li>
+            <li>DSCR at current market debt terms</li>
+            <li>Price reasonableness assessment</li>
+            <li>1-page written summary + go/no-go</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Full Underwriting (FEATURED) -->
+        <div class="service-card service-card--featured">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="2" stroke="#B8952E" stroke-width="1.8"/><path d="M7 11H15M7 7.5H15M7 14.5H12" stroke="#B8952E" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Full Underwriting Analysis</h3>
+          <div class="service-price">$3,000–$7,500</div>
+          <div class="service-timeline">Delivered in 5–7 business days</div>
+          <p class="service-desc">Complete institutional-quality financial model. The deliverable sophisticated investors and lenders expect before any serious deal.</p>
+          <ul class="service-includes">
+            <li>Full NOI build-up (revenue + expenses)</li>
+            <li>Cap rate analysis (in-place, stabilized, exit)</li>
+            <li>DSCR sensitivity table (rate × LTV)</li>
+            <li>IRR &amp; equity multiple (5yr + 10yr holds)</li>
+            <li>Waterfall model if applicable</li>
+            <li>PDF report + Excel model delivered</li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Financing Strategy -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 16L9 10L13 13L19 6" stroke="#B8952E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="16" r="1.5" fill="#B8952E"/></svg>
+          </div>
+          <h3>Financing Strategy Report</h3>
+          <div class="service-price">$2,500–$5,000</div>
+          <div class="service-timeline">Delivered in 5–7 business days</div>
+          <p class="service-desc">Objective analysis of your financing options — without anyone earning a commission on the outcome. Know what lender categories fit your deal before you approach anyone.</p>
+          <ul class="service-includes">
+            <li>Agency, bank, life co, CMBS, bridge options</li>
+            <li>Rate, LTV, term, recourse comparison</li>
+            <li>Recommended structure with rationale</li>
+            <li>Key questions for lender conversations</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="services-row-2">
+        <!-- Card 4: Deal Structuring -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4V11M11 11L7 8M11 11L15 8" stroke="#B8952E" stroke-width="1.8" stroke-linecap="round"/><circle cx="11" cy="18" r="2" stroke="#B8952E" stroke-width="1.8"/><circle cx="4" cy="7" r="2" stroke="#B8952E" stroke-width="1.8"/><circle cx="18" cy="7" r="2" stroke="#B8952E" stroke-width="1.8"/></svg>
+          </div>
+          <h3>Deal Structuring Advisory</h3>
+          <div class="service-price">$4,000–$10,000</div>
+          <div class="service-timeline">Delivered in 7–10 business days</div>
+          <p class="service-desc">For syndicators and developers structuring equity raises. Model the deal economics — LP/GP splits, preferred returns, promote tiers, investor returns — before you go to your capital base.</p>
+          <ul class="service-includes">
+            <li>Full underwriting included</li>
+            <li>LP/GP waterfall &amp; promote modeling</li>
+            <li>Investor returns by tranche</li>
+            <li>Scenario analysis (base, upside, downside)</li>
+            <li>Investor summary one-pager</li>
+          </ul>
+        </div>
+
+        <!-- Card 5: Rush -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="7" stroke="#B8952E" stroke-width="1.8"/><path d="M11 7V11L14 13" stroke="#B8952E" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Rush / Expedited Delivery</h3>
+          <div class="service-price">+50% premium</div>
+          <div class="service-timeline">Delivered in 24–48 hours</div>
+          <p class="service-desc">Offer accepted, LOI deadline tight, need numbers fast? Rush delivery is available on most services when timeline requires it.</p>
+          <ul class="service-includes">
+            <li>Same full-quality deliverable</li>
+            <li>Priority scheduling, immediate start</li>
+            <li>Available on most service types</li>
+            <li>Confirm availability before ordering</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Retainer Card -->
+      <div class="retainer-card">
+        <div class="retainer-left">
+          <span class="label">Ongoing Advisory</span>
+          <div class="divider"></div>
+          <h3>Monthly Retainer</h3>
+          <p>For active syndicators and investors evaluating 3+ deals per month. Ongoing financial advisory relationship — analysis, financing strategy, deal structuring — on a predictable monthly fee.</p>
+          <br>
+          <p style="font-size:13px;color:#8A8880;">3-month minimum. Paid monthly in advance.</p>
+        </div>
+        <div class="retainer-tiers">
+          <div class="retainer-tier">
+            <h4>Active Investor</h4>
+            <div class="price">$2,000<span style="font-size:13px;font-weight:400;color:#8A8880;">/mo</span></div>
+            <ul>
+              <li>2 deal screenings/month</li>
+              <li>1 full underwriting/quarter</li>
+              <li>Unlimited async Q&amp;A</li>
+              <li>Monthly 30-min call</li>
+            </ul>
+          </div>
+          <div class="retainer-tier">
+            <h4>Active Syndicator</h4>
+            <div class="price">$3,500<span style="font-size:13px;font-weight:400;color:#8A8880;">/mo</span></div>
+            <ul>
+              <li>4 deal screenings/month</li>
+              <li>1 full underwriting/month</li>
+              <li>1 financing strategy/quarter</li>
+              <li>Unlimited async Q&amp;A</li>
+              <li>Monthly 60-min call</li>
+            </ul>
+          </div>
+          <div class="retainer-tier">
+            <h4>Developer / GP</h4>
+            <div class="price">$5,000<span style="font-size:13px;font-weight:400;color:#8A8880;">/mo</span></div>
+            <ul>
+              <li>Unlimited screenings</li>
+              <li>2 full underwritings/month</li>
+              <li>Financing strategy as needed</li>
+              <li>Deal structuring included</li>
+              <li>Bi-weekly 60-min calls</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROCESS ─── -->
+  <section class="section-process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">How It Works</span>
+        <div class="divider divider--center"></div>
+        <h2>From inquiry to deliverable<br>in under a week.</h2>
+        <p>A straightforward process with no ambiguity about what you're getting or what it costs.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <h4>Inquiry &amp; Intake</h4>
+          <p>Email or contact form. Describe your deal and what analysis you need. Brief 15-minute call to confirm scope and timeline.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <h4>Engagement Letter</h4>
+          <p>Clear written proposal: exact scope, deliverables, fee, and turnaround. No ambiguity. Sent within 24 hours of intake call.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <h4>Payment &amp; Materials</h4>
+          <p>100% upfront via ACH or card. You send the OM, rent roll, and financials. Work begins immediately upon payment.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <h4>Analysis Delivered</h4>
+          <p>PDF report and Excel model delivered within the agreed timeline. Optional 30-minute review call to walk through findings — included.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="section-about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-left">
+          <span class="label">About</span>
+          <div class="divider"></div>
+          <h2>Commercial real estate analysis done by a CPA — not a broker with a closing incentive.</h2>
+          <p>Cap Rate Advisory is run by Matt Calnan, CPA, CMA. The CPA and CMA designations reflect a background in financial analysis, management accounting, and complex financial modeling — not audit work or real estate sales.</p>
+          <p>The business exists because sophisticated commercial RE investors deserve financial analysis that isn't shaped by who earns the most from their decision. Flat fees eliminate the conflict.</p>
+          <p>Focus: commercial and multifamily transactions in the $2M–$50M range. US primary market, Canada where applicable. No residential, no flips, no small deals.</p>
+
+          <div class="cred-badges">
+            <span class="cred-badge">CPA</span>
+            <span class="cred-badge">CMA</span>
+            <span class="cred-badge">Commercial RE Underwriting</span>
+            <span class="cred-badge">Financial Modeling</span>
+            <span class="cred-badge">Deal Structuring</span>
+          </div>
+        </div>
+
+        <div class="about-right">
+          <div class="expertise-item">
+            <h4>NOI Analysis &amp; Normalization</h4>
+            <p>Line-by-line reconstruction of operating income and expenses against market benchmarks. Identifying where seller financials are optimistic and what the real numbers look like.</p>
+          </div>
+          <div class="expertise-item">
+            <h4>Debt Sizing &amp; DSCR Modeling</h4>
+            <p>Maximum supportable debt at multiple rate and LTV scenarios. DSCR sensitivity tables stress-tested against current and projected rate environments.</p>
+          </div>
+          <div class="expertise-item">
+            <h4>IRR &amp; Equity Waterfall Modeling</h4>
+            <p>Investor-facing return projections across hold periods, with preferred return hurdles, promote tiers, and LP/GP economic splits modeled explicitly.</p>
+          </div>
+          <div class="expertise-item">
+            <h4>Financing Options Analysis</h4>
+            <p>Objective comparison of available debt structures — agency, CMBS, bank, bridge, life company — without any interest in which option you choose.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOR WHOM ─── -->
+  <section class="section-whom" id="who">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Who We Work With</span>
+        <div class="divider divider--center"></div>
+        <h2>Sophisticated investors who need<br>objective financial analysis.</h2>
+      </div>
+
+      <div class="whom-grid">
+        <div class="whom-card">
+          <div class="whom-icon">🏢</div>
+          <h3>Multifamily Syndicators</h3>
+          <p>You're raising capital from LPs and need deal economics that hold up to scrutiny. You need the waterfall modeled correctly, returns stress-tested, and an investor summary that's accurate.</p>
+          <div class="whom-tags">
+            <span class="whom-tag">Value-add multifamily</span>
+            <span class="whom-tag">5–200 units</span>
+            <span class="whom-tag">Equity raises</span>
+          </div>
+        </div>
+        <div class="whom-card">
+          <div class="whom-icon">📊</div>
+          <h3>Commercial RE Investors</h3>
+          <p>You're evaluating a commercial acquisition and want independent underwriting before you make an offer or commit to a financing structure. You don't want a broker's model.</p>
+          <div class="whom-tags">
+            <span class="whom-tag">Industrial</span>
+            <span class="whom-tag">Office</span>
+            <span class="whom-tag">Retail</span>
+            <span class="whom-tag">Mixed-use</span>
+          </div>
+        </div>
+        <div class="whom-card">
+          <div class="whom-icon">🏗️</div>
+          <h3>Developers &amp; Family Offices</h3>
+          <p>You're evaluating acquisitions with complex structures, or you want a second set of eyes on the financial model before you commit capital or bring in partners.</p>
+          <div class="whom-tags">
+            <span class="whom-tag">Acquisitions</span>
+            <span class="whom-tag">$2M–$50M</span>
+            <span class="whom-tag">Private equity</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ─── -->
+  <section class="section-faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">Common Questions</span>
+        <div class="divider divider--center"></div>
+        <h2>What investors ask before<br>their first engagement.</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Are you a mortgage broker?</h4>
+          <p>No. Cap Rate Advisory provides financial analysis and consulting only. We do not originate, arrange, or negotiate mortgage loans, and we do not earn any compensation from lenders or tied to transaction closings. Our fee is paid by you, upfront, for analytical work.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Why would I pay for analysis when my broker does it for free?</h4>
+          <p>Your broker earns 1–2 points when the deal closes. Their analysis is shaped — consciously or not — by that incentive. You pay a flat fee to get analysis from someone who has no stake in the outcome. Most clients find it's the cheapest money they spend on a deal.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What if my deal doesn't close after the analysis?</h4>
+          <p>The fee is non-refundable once work has commenced — the analysis is the deliverable, not the deal closing. This is the point: you're paying for an objective assessment, and sometimes that assessment tells you to walk away. That's valuable.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What do you need from me to get started?</h4>
+          <p>Offering memorandum (OM), rent roll, and 2–3 years of operating financials if available. Signed engagement letter and payment. That's it. We'll schedule a brief intake call before we start to confirm assumptions.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What does the Excel model look like?</h4>
+          <p>A fully buildout multi-tab model: rent roll, income and expense reconstruction, NOI summary, debt sizing, sensitivity tables, IRR and equity multiple, and waterfall (where applicable). Not a template — a deal-specific model built from your numbers.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you work on residential (1–4 unit) deals?</h4>
+          <p>No. Cap Rate Advisory focuses exclusively on commercial real estate — multifamily 5+ units, industrial, office, retail, and mixed-use. Deal size typically $2M+. Residential deals have different dynamics and different analytical requirements.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What markets do you cover?</h4>
+          <p>United States primarily — no geographic restriction. Canada where applicable. Market data quality may vary for very thin secondary markets, but the analytical framework applies anywhere.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I use the analysis with lenders?</h4>
+          <p>Yes. Many clients share the underwriting report and Excel model with lenders as part of their loan package. The analysis is clearly attributed to Cap Rate Advisory, a financial consulting firm. It is not a certified appraisal and should not be represented as one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="section-cta">
+    <h2>Ready to underwrite your next deal?</h2>
+    <p>Flat-fee engagement. Clear scope. Delivered in 5–7 days. No commissions, ever.</p>
+    <div class="cta-buttons">
+      <a href="mailto:matt@caprateadvisory.com" class="btn btn--primary">Email Matt Directly</a>
+      <a href="#services" class="btn btn--outline">View Pricing</a>
+    </div>
+    <p class="cta-note">matt@caprateadvisory.com &nbsp;·&nbsp; Response within 1 business day</p>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo-name">Cap Rate Advisory</div>
+          <div class="footer-logo-sub">Commercial RE Financial Consulting</div>
+          <p>Flat-fee underwriting analysis, financing strategy, and deal structuring advisory for commercial real estate investors and syndicators.</p>
+        </div>
+
+        <div class="footer-links">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#services">Deal Screening</a></li>
+            <li><a href="#services">Full Underwriting Analysis</a></li>
+            <li><a href="#services">Financing Strategy Report</a></li>
+            <li><a href="#services">Deal Structuring Advisory</a></li>
+            <li><a href="#services">Monthly Retainer</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:matt@caprateadvisory.com">matt@caprateadvisory.com</a></li>
+            <li><a href="https://linkedin.com/in/mattcalnan" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 Cap Rate Advisory · Matt Calnan, CPA, CMA<br>
+          Serving clients across the United States and Canada
+        </div>
+        <div class="footer-disclaimer">
+          Cap Rate Advisory provides financial consulting and analytical services only. These services do not constitute mortgage origination, real estate brokerage, mortgage brokerage, or investment advice as defined under applicable securities laws. All analysis is prepared for informational and advisory purposes. Cap Rate Advisory does not arrange, negotiate, or place mortgage loans and does not receive compensation from any lender or related party.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── CONTACT MODAL ─── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <h3 id="modalTitle">Start an Engagement</h3>
+      <p>Tell us about your deal and what analysis you need. We'll respond within 1 business day.</p>
+      <form action="mailto:matt@caprateadvisory.com" method="get" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="service">Service Needed</label>
+          <select id="service" name="service">
+            <option value="">Select a service…</option>
+            <option>Deal Screening / Feasibility ($1,000–$2,500)</option>
+            <option>Full Underwriting Analysis ($3,000–$7,500)</option>
+            <option>Financing Strategy Report ($2,500–$5,000)</option>
+            <option>Deal Structuring Advisory ($4,000–$10,000)</option>
+            <option>Monthly Retainer</option>
+            <option>Not sure — let's talk</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="deal">Deal Description</label>
+          <textarea id="deal" name="deal" placeholder="Property type, location, approximate purchase price, timeline…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Inquiry →</button>
+        <p class="form-note">Or email directly: matt@caprateadvisory.com</p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Modal
+    function openModal() {
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(e) {
+      if (!e || e.target === document.getElementById('modalOverlay') || e.currentTarget.classList.contains('modal-close')) {
+        document.getElementById('modalOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+    document.querySelectorAll('[onclick="openModal()"]').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); openModal(); });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Nav background on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 20 ? '0 2px 24px rgba(0,0,0,0.18)' : 'none';
+    });
+  </script>
+</body>
+</html>
