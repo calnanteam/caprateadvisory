@@ -8,7 +8,7 @@
     ],
     "routes": [
         { "src": "/api/(.*)", "dest": "/api/$1" },
-        { "src": "/form-override.js", "dest": "/public/form-override.js" },
+        { "src": "/public/(.*)", "dest": "/public/$1" },
         { "src": "/book", "dest": "/book.html" },
         { "src": "/", "dest": "/caprateadvisory-website.html" },
         { "src": "/(.*)", "dest": "/caprateadvisory-website.html" }
