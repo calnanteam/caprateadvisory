@@ -7,7 +7,7 @@
         { "src": "api/*.js", "use": "@vercel/node" }
     ],
     "routes": [
-        { "src": "/api/(.*)", "dest": "/api/$1" },
+        { "src": "/api/(.*)", "dest": "/api/$1.js" },
         { "src": "/form-override.js", "dest": "/form-override.js" },
         { "src": "/book", "dest": "/book.html" },
         { "src": "/", "dest": "/caprateadvisory-website.html" },
