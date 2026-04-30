@@ -3,12 +3,12 @@
     "builds": [
         { "src": "caprateadvisory-website.html", "use": "@vercel/static" },
         { "src": "book.html", "use": "@vercel/static" },
-        { "src": "api/*.js", "use": "@vercel/node" },
-        { "src": "public/(.*)", "use": "@vercel/static" }
+        { "src": "form-override.js", "use": "@vercel/static" },
+        { "src": "api/*.js", "use": "@vercel/node" }
     ],
     "routes": [
         { "src": "/api/(.*)", "dest": "/api/$1" },
-        { "src": "/public/(.*)", "dest": "/public/$1" },
+        { "src": "/form-override.js", "dest": "/form-override.js" },
         { "src": "/book", "dest": "/book.html" },
         { "src": "/", "dest": "/caprateadvisory-website.html" },
         { "src": "/(.*)", "dest": "/caprateadvisory-website.html" }
