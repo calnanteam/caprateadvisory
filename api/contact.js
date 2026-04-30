@@ -15,9 +15,9 @@ module.exports = async function handler(req, res) {
 
   const notifyPayload = {
     from: 'Cap Rate Advisory <matt@calnan.co>',
-    to: ['matt@caprateadvisory.com'],
+    to: ['matt.calnan@gmail.com'],
     reply_to: email,
-    subject: 'New inquiry: ' + name,
+    subject: 'New inquiry from caprateadvisory.com: ' + name,
     html: '<h2>New Contact Form Submission</h2><p><strong>Name:</strong> ' + name + '</p><p><strong>Email:</strong> ' + email + '</p><p><strong>Service:</strong> ' + (company || 'Not specified') + '</p><p><strong>Message:</strong><br>' + String(message).replace(/\n/g, '<br>') + '</p>'
   };
 
