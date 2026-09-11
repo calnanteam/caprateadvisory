@@ -1,4 +1,10 @@
 {
+    "git": {
+        "deploymentEnabled": {
+            "**": false,
+            "main": true
+        }
+    },
     "version": 2,
     "builds": [
         { "src": "caprateadvisory-website.html", "use": "@vercel/static" },
