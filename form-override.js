@@ -12,16 +12,17 @@ document.addEventListener('DOMContentLoaded', function () {
     var email = (form.querySelector('#email') || form.querySelector('[type="email"]') || {}).value || '';
     var service = (form.querySelector('#service') || form.querySelector('[name="service"]') || {}).value || 'Not specified';
     var deal = (form.querySelector('#deal') || form.querySelector('textarea') || {}).value || '';
+    var hp = (form.querySelector('#website_url') || {}).value || '';
     btn.textContent = 'Sending…';
     btn.disabled = true;
     try {
       var res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, company: service, message: deal })
+        body: JSON.stringify({ name: name, email: email, company: service, message: deal, website_url: hp })
       });
       if (res.ok) {
-        btn.textContent = 'Sent! We\'ll be in touch.';
+        btn.textContent = 'Sent! I\'ll be in touch.';
         btn.style.background = '#2d7a4f';
         form.reset();
         setTimeout(function () {

@@ -2,15 +2,26 @@
     "version": 2,
     "builds": [
         { "src": "caprateadvisory-website.html", "use": "@vercel/static" },
-        { "src": "book.html", "use": "@vercel/static" },
+        { "src": "privacy.html", "use": "@vercel/static" },
+        { "src": "terms.html", "use": "@vercel/static" },
+        { "src": "404.html", "use": "@vercel/static" },
+        { "src": "og-image.png", "use": "@vercel/static" },
+        { "src": "robots.txt", "use": "@vercel/static" },
+        { "src": "sitemap.xml", "use": "@vercel/static" },
         { "src": "form-override.js", "use": "@vercel/static" },
         { "src": "api/*.js", "use": "@vercel/node" }
     ],
     "routes": [
         { "src": "/api/(.*)", "dest": "/api/$1.js" },
         { "src": "/form-override.js", "dest": "/form-override.js" },
-        { "src": "/book", "dest": "/book.html" },
+        { "src": "/og-image.png", "dest": "/og-image.png" },
+        { "src": "/robots.txt", "dest": "/robots.txt" },
+        { "src": "/sitemap.xml", "dest": "/sitemap.xml" },
+        { "src": "/privacy(\\.html)?", "dest": "/privacy.html" },
+        { "src": "/terms(\\.html)?", "dest": "/terms.html" },
+        { "src": "/book(\\.html)?", "status": 301, "headers": { "Location": "https://calendly.com/calnanreg/caprate-advisory-intro-call" } },
         { "src": "/", "dest": "/caprateadvisory-website.html" },
-        { "src": "/(.*)", "dest": "/caprateadvisory-website.html" }
+        { "src": "/index\\.html", "status": 301, "headers": { "Location": "/" } },
+        { "src": "/(.*)", "dest": "/404.html", "status": 404 }
     ]
 }
